@@ -1,43 +1,32 @@
-# SSD1306
-Modified SSD1306 driver from micropython
+# SSD1306_FLAG_I2C
 
-Added hardware horizontal scroll and a clear function
+The scroll method in the MicroPython's ssd1306 class is based on [FrameBuffer class's scroll()](https://docs.micropython.org/en/v1.15/library/framebuf.html#framebuf.FrameBuffer.scroll).That may leave a footprint of the previous colors in the FrameBuffer.
 
-Heres a usage example:
+By adopting the [modified version of the ssd1306 class](https://github.com/timotet/SSD1306/blob/master/ssd1306.py) written by Tim Toliver, we create a new SSD1306_I2C_FLAG class to reuse the code already in the built-in ssd1306 class. The SSD1306_I2C_FLAG class has the following methods added:
 
-    # runs under micropython version 1.8.7
-    # import machine
-    from machine import Pin, I2C
-    import time
-    import ssd1306
+- clear()：clear the OLED.
+- hw_scroll_h(direction=True):continuously scroll to right by default.
+- hw_scroll_off()：stop scrolling.
 
-    def lcdInit():
-        # I2C pins
-        # I have 4k7 pull ups on scl and sda
-        # set up I2C on gpio 14 and 16
-        i2c = I2C(scl=Pin(16), sda=Pin(14), freq=100000)
-        lcd = ssd1306.SSD1306_I2C(128, 32, i2c)            # lcd is 128x32
-        return lcd
+## Usage example
 
-    def main():
+```python=
+from machine import Pin, I2C
+from ssd1306_flag import SSD1306_I2C_FLAG
+from time import sleep
 
-        display = lcdInit()
-        display.clear()
+i2c = I2C(scl=Pin(5), sda=Pin(4))
+oled = SSD1306_I2C_FLAG(128, 64, i2c)
 
-        while True:
-
-            display.text("Hello World", 0, 0)
-            # scroll right
-            display.hw_scroll_h()
-
-            time.sleep(3)
-
-            # scroll left
-            display.hw_scroll_h(False)
-
-            time.sleep(3)
-
-            display.hw_scroll_off()
-            time.sleep(3)
-            display.clear()
-            time.sleep(1)
+while True:
+    oled.text("I love PYTHON!", 0, 0)
+    oled.show()
+    oled.hw_scroll_h()
+    sleep(2)
+    oled.hw_scroll_h(False)
+    sleep(2)
+    oled.hw_scroll_off()
+    sleep(2)
+    oled.clear()
+    sleep(2)
+```
