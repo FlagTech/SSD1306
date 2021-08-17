@@ -10,7 +10,7 @@ By adopting the [modified version of the ssd1306 class](https://github.com/timot
 
 ## Usage example
 
-```python=
+```python
 from machine import Pin, I2C
 from ssd1306_flag import SSD1306_I2C_FLAG
 from time import sleep
