@@ -1,5 +1,5 @@
 from machine import Pin, I2C
-from ssd1306_flag import SSD1306_I2C_FLAG
+from ssd1306_i2c_flag import SSD1306_I2C_FLAG
 from time import sleep
 
 i2c = I2C(scl=Pin(5), sda=Pin(4))
