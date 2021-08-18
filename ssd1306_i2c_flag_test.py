@@ -10,7 +10,7 @@ while True:
     oled.text("I love PYTHON!", 0, 16)
     oled.text("I love PYTHON!", 0, 32)
     oled.show()
-    oled.hw_scroll_h()
+    oled.hw_scroll_h(frames=oled.FRAMES_128)
     sleep(2)
     oled.hw_scroll_h(False)
     sleep(2)
