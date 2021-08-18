@@ -7,6 +7,8 @@ oled = SSD1306_I2C_FLAG(128, 64, i2c)
 
 while True:
     oled.text("I love PYTHON!", 0, 0)
+    oled.text("I love PYTHON!", 0, 16)
+    oled.text("I love PYTHON!", 0, 32)
     oled.show()
     oled.hw_scroll_h()
     sleep(2)

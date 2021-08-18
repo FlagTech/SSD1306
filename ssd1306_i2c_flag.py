@@ -21,9 +21,9 @@ class SSD1306_I2C_FLAG(SSD1306_I2C):
         if not direction:
             self.write_cmd(SET_HWSCROLL_LEFT)
             self.write_cmd(0x00) # dummy byte
-            self.write_cmd(0x07) # start page = page 7
+            self.write_cmd(0x00) # start page = page 0
             self.write_cmd(0x00) # frequency = 5 frames
-            self.write_cmd(0x00) # end page = page 0
+            self.write_cmd(0x07) # end page = page 7
         else:
             self.write_cmd(SET_HWSCROLL_RIGHT)
             self.write_cmd(0x00) # dummy byte
