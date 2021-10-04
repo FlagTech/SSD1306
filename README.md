@@ -7,7 +7,7 @@ By adopting the [modified version of the ssd1306 class](https://github.com/timot
 - clear()：clear the OLED.
 - hw_scroll_h(direction=True, interval=FRAMES_5):continuously scroll to right/left.
     - direction: True/False, scroll to right/left.
-    - interval:
+    - interval(One frame approximate 9.19ms.):
         - SSD1306_FLAG_I2C.FRAMES_2
         - SSD1306_FLAG_I2C.FRAMES_3
         - SSD1306_FLAG_I2C.FRAMES_4
@@ -15,8 +15,7 @@ By adopting the [modified version of the ssd1306 class](https://github.com/timot
         - SSD1306_FLAG_I2C.FRAMES_25
         - SSD1306_FLAG_I2C.FRAMES_64
         - SSD1306_FLAG_I2C.FRAMES_128
-        - SSD1306_FLAG_I2C.FRAMES_256
-        One frame approximate 9.19ms. 
+        - SSD1306_FLAG_I2C.FRAMES_256        
 - hw_scroll_diag(direction=True, interval=FRAMES_5, offset=1):continuously scroll to up-right/up-left.
     - offset: vertical offset per scroll.
 - hw_scroll_off()：stop scrolling.
